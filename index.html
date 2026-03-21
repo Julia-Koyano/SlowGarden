@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julia's Apps 公式サイト</title>
+  <style>
+    /* 全体の設定：クリーム色の背景と、茶色系の文字で優しい雰囲気に */
+    body {
+      font-family: 'Helvetica Rounded', 'Hiragino Maru Gothic ProN', sans-serif;
+      background-color: #FFFDF7; /* 優しいクリーム色 */
+      color: #5D4037; /* チョコレートブラウン */
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* 一番上のヘッダー（看板） */
+    header {
+      background-color: #FFD1DC; /* パステルピンク */
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      letter-spacing: 2px;
+    }
+
+    /* 真ん中のコンテンツエリア */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* 見出し（姉妹アプリなど） */
+    .section-title {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    .section-title h2 {
+      color: #FF9AA2;
+      display: inline-block;
+      border-bottom: 3px dashed #FFD1DC;
+      padding-bottom: 5px;
+      font-size: 20px;
+    }
+
+    /* アプリを紹介する可愛いカード */
+    .app-card {
+      background: #fff;
+      border: 2px solid #FFE4E1; /* 薄いピンクの枠線 */
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(255, 209, 220, 0.3);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    
+    /* アプリアイコンの代わりの四角（後で画像に変えられます） */
+    .app-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #FFF0F5;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+    
+    /* アプリの説明文 */
+    .app-info {
+      flex-grow: 1;
+    }
+    .app-info h3 {
+      margin: 0 0 8px 0;
+      color: #D87093;
+      font-size: 18px;
+    }
+    .app-info p {
+      margin: 0 0 12px 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #795548;
+    }
+    
+    /* ダウンロードボタン */
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #FF9AA2;
+      transition: opacity 0.2s;
+    }
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    /* お問い合わせ専用の目立つボックス */
+    .contact-box {
+      background: #FFF0F5;
+      border: 2px dashed #FFB6C1;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .contact-box p {
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .contact-btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #FFB6C1;
+      box-shadow: 0 4px 6px rgba(255, 182, 193, 0.4);
+    }
+    .contact-btn:hover {
+      opacity: 0.8;
+    }
+
+    /* 一番下のエリア（フッター） */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #A1887F;
+    }
+    footer a {
+      color: #FF9AA2;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌷 Julia's Apps 🌷</h1>
+  </header>
+
+  <div class="container">
+    
+    <div class="section-title">
+      <h2>📱 アプリ一覧</h2>
+    </div>
+
+    <div class="app-card">
+      <div class="app-icon">🌱</div>
+      <div class="app-info">
+        <h3>スローガーデン</h3>
+        <p>木を育てて実を収穫する、のんびりポイ活癒やしゲームです。</p>
+        <div class="btn-group">
+          <a href="#" class="btn">App Store</a>
+          <a href="#" class="btn">Google Play</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-icon">🍰</div>
+      <div class="app-info">
+        <h3>スイーツカフェ</h3>
+        <p>お菓子を焼いてショーケースに並べる、可愛いお店経営ゲームです。</p>
+        <div class="btn-group">
+          <a href="#" class="btn">App Store</a>
+          <a href="#" class="btn">Google Play</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="app-card">
+      <div class="app-icon">🐠</div>
+      <div class="app-info">
+        <h3>アクアリウム (準備中)</h3>
+        <p>可愛いお魚たちと一緒に、水槽でお宝探しをするゲームです。</p>
+        <div class="btn-group">
+          <a href="#" class="btn" style="background-color: #ccc;">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h2>💌 お問い合わせ</h2>
+    </div>
+    
+    <div class="contact-box">
+      <p>アプリの不具合やご意見、応援メッセージなどは<br>こちらのフォームからお願いいたします！</p>
+      <a href="#" class="contact-btn">お問い合わせフォームへ</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <br><br>
+    &copy; 2026 Julia. All rights reserved.
+  </footer>
+
+</body>
+</html>
