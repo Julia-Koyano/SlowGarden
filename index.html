@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ポイ活スローガーデン公式サイト</title>
   <style>
-    /* スムーススクロール（ヌルッと移動する魔法） */
     html {
       scroll-behavior: smooth;
     }
 
-    /* 全体の設定：クリーム色の背景と、茶色系の文字で優しい雰囲気に */
     body {
       font-family: 'Helvetica Rounded', 'Hiragino Maru Gothic ProN', sans-serif;
-      background-color: #FFFDF7; /* 優しいクリーム色 */
-      color: #5D4037; /* チョコレートブラウン */
+      background-color: #FFFDF7;
+      color: #5D4037;
       margin: 0;
       padding: 0;
     }
-    
-    /* 一番上のヘッダー（看板） */
+
     header {
-      background-color: #FFD1DC; /* パステルピンク */
+      background-color: #FFD1DC;
       padding: 40px 20px;
       text-align: center;
       border-radius: 0 0 24px 24px;
@@ -36,7 +33,7 @@
     }
 
     /* ==========================================
-       ハンバーガーメニューのCSS
+       ハンバーガーメニュー
        ========================================== */
     .hamburger {
       position: fixed;
@@ -60,23 +57,22 @@
     .hamburger:hover {
       background-color: #FF8A95;
     }
-    
-    /* 隠れているメニュー画面 */
+
     .mobile-menu {
       position: fixed;
       top: 0;
-      right: -250px; /* 最初は画面の右外に隠しておく */
+      right: -250px;
       width: 200px;
       height: 100vh;
       background-color: #FFFDF7;
       box-shadow: -2px 0 10px rgba(0,0,0,0.1);
       z-index: 99;
-      transition: right 0.3s ease; /* スラッと出てくるアニメーション */
+      transition: right 0.3s ease;
       padding-top: 80px;
       border-left: 3px solid #FFE4E1;
     }
     .mobile-menu.open {
-      right: 0; /* クラスがついたら画面内に出現！ */
+      right: 0;
     }
     .mobile-menu a {
       display: block;
@@ -90,19 +86,19 @@
       background-color: #FFF0F5;
     }
 
-    /* 真ん中のコンテンツエリア */
+    /* ==========================================
+       メインコンテンツ
+       ========================================== */
     .container {
       max-width: 600px;
       margin: 0 auto;
       padding: 20px;
     }
 
-    /* 見出し（姉妹アプリなど） */
     .section-title {
       text-align: center;
       margin: 40px 0 20px 0;
-      /* リンクで飛んできた時にヘッダーと被らないように余白をつける */
-      scroll-margin-top: 80px; 
+      scroll-margin-top: 80px;
     }
     .section-title h2 {
       color: #FF9AA2;
@@ -112,10 +108,103 @@
       font-size: 20px;
     }
 
-    /* アプリを紹介する可愛いカード */
+    /* ==========================================
+       お知らせセクション
+       ========================================== */
+    #notices-list {
+      margin-top: 8px;
+    }
+
+    .notice-card {
+      background: #fff;
+      border: 2px solid #FFE4E1;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(255, 209, 220, 0.25);
+      transition: box-shadow 0.2s;
+    }
+    .notice-card:hover {
+      box-shadow: 0 4px 12px rgba(255, 154, 162, 0.3);
+    }
+
+    .notice-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .notice-app-badge {
+      background-color: #FFE0E6;
+      color: #D87093;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .notice-date {
+      font-size: 11px;
+      color: #AAAAAA;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .notice-title {
+      font-weight: bold;
+      font-size: 13px;
+      color: #5D4037;
+      flex-grow: 1;
+    }
+
+    .notice-chevron {
+      font-size: 12px;
+      color: #CCCCCC;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .notice-card.open .notice-chevron {
+      transform: rotate(180deg);
+    }
+
+    .notice-body {
+      display: none;
+      padding: 0 16px 14px 16px;
+      font-size: 13px;
+      color: #795548;
+      line-height: 1.6;
+      border-top: 1px dashed #FFE4E1;
+      padding-top: 10px;
+    }
+    .notice-card.open .notice-body {
+      display: block;
+    }
+
+    .notice-empty {
+      text-align: center;
+      color: #AAAAAA;
+      padding: 24px 0;
+      font-size: 14px;
+    }
+
+    .notice-loading {
+      text-align: center;
+      color: #FF9AA2;
+      padding: 24px 0;
+      font-size: 14px;
+    }
+
+    /* ==========================================
+       アプリカード
+       ========================================== */
     .app-card {
       background: #fff;
-      border: 2px solid #FFE4E1; /* 薄いピンクの枠線 */
+      border: 2px solid #FFE4E1;
       border-radius: 16px;
       padding: 16px;
       margin-bottom: 20px;
@@ -124,8 +213,6 @@
       gap: 16px;
       align-items: center;
     }
-    
-    /* アプリアイコンの代わりの四角 */
     .app-icon {
       width: 80px;
       height: 80px;
@@ -137,8 +224,6 @@
       font-size: 32px;
       flex-shrink: 0;
     }
-    
-    /* アプリの説明文 */
     .app-info {
       flex-grow: 1;
     }
@@ -153,8 +238,6 @@
       line-height: 1.5;
       color: #795548;
     }
-    
-    /* ダウンロードボタン */
     .btn-group {
       display: flex;
       gap: 8px;
@@ -174,7 +257,9 @@
       opacity: 0.8;
     }
 
-    /* お問い合わせ専用の目立つボックス */
+    /* ==========================================
+       お問い合わせ
+       ========================================== */
     .contact-box {
       background: #FFF0F5;
       border: 2px dashed #FFB6C1;
@@ -203,7 +288,6 @@
       opacity: 0.8;
     }
 
-    /* 一番下のエリア（フッター） */
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -222,6 +306,7 @@
   <button class="hamburger" id="hamburger-btn">☰</button>
 
   <nav class="mobile-menu" id="mobile-menu">
+    <a href="#notices" class="menu-link">📢 お知らせ</a>
     <a href="#apps" class="menu-link">📱 アプリ一覧</a>
     <a href="#contact" class="menu-link">💌 お問い合わせ</a>
     <a href="privacy.html">📜 プライバシーポリシー</a>
@@ -232,7 +317,17 @@
   </header>
 
   <div class="container">
-    
+
+    <!-- ==================== お知らせ ==================== -->
+    <div class="section-title" id="notices">
+      <h2>📢 お知らせ</h2>
+    </div>
+
+    <div id="notices-list">
+      <p class="notice-loading">読み込み中…</p>
+    </div>
+
+    <!-- ==================== アプリ一覧 ==================== -->
     <div class="section-title" id="apps">
       <h2>📱 アプリ一覧</h2>
     </div>
@@ -260,7 +355,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="app-card">
       <div class="app-icon">🐠</div>
       <div class="app-info">
@@ -285,10 +380,11 @@
       </div>
     </div>
 
+    <!-- ==================== お問い合わせ ==================== -->
     <div class="section-title" id="contact">
       <h2>💌 お問い合わせ</h2>
     </div>
-    
+
     <div class="contact-box">
       <p>アプリの不具合やご意見などは<br>こちらのフォームからお願いいたします！</p>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSclPJZmFeL1IBk8nyZgvcqNv2DkGokH393TfhZwmXAeCs3Alw/viewform?usp=publish-editor" class="contact-btn">お問い合わせフォームへ</a>
@@ -303,29 +399,80 @@
   </footer>
 
   <script>
+    /* ==========================================
+       ハンバーガーメニュー
+       ========================================== */
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuLinks = document.querySelectorAll('.menu-link');
 
-    // ハンバーガーボタンを押した時の動き
     hamburgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open'); // メニューを出し入れする
-      
-      // 開いている時はアイコンを「✕」にする
-      if(mobileMenu.classList.contains('open')) {
-        hamburgerBtn.innerHTML = '✕';
-      } else {
-        hamburgerBtn.innerHTML = '☰';
-      }
+      mobileMenu.classList.toggle('open');
+      hamburgerBtn.innerHTML = mobileMenu.classList.contains('open') ? '✕' : '☰';
     });
 
-    // メニューの中のリンクを押したら、自動でメニューを閉じる
     menuLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         hamburgerBtn.innerHTML = '☰';
       });
     });
+
+    /* ==========================================
+       お知らせ一覧の表示
+       ========================================== */
+    async function loadNotices() {
+      const container = document.getElementById('notices-list');
+
+      try {
+        // キャッシュを避けるためにタイムスタンプを付与
+        const res = await fetch('notices.json?v=' + Date.now());
+        if (!res.ok) throw new Error('fetch failed');
+        const notices = await res.json();
+
+        if (notices.length === 0) {
+          container.innerHTML = '<p class="notice-empty">お知らせはまだありません🌱</p>';
+          return;
+        }
+
+        container.innerHTML = notices.map((n, i) => `
+          <div class="notice-card" id="notice-${i}">
+            <div class="notice-header" onclick="toggleNotice(${i})">
+              ${n.app ? `<span class="notice-app-badge">🌿 ${n.app}</span>` : ''}
+              <span class="notice-date">${n.date}</span>
+              <span class="notice-title">${escapeHtml(n.title)}</span>
+              <span class="notice-chevron">▼</span>
+            </div>
+            <div class="notice-body">
+              ${escapeHtml(n.body).replace(/\n/g, '<br>')}
+            </div>
+          </div>
+        `).join('');
+
+        // 最新のお知らせは自動で開いておく
+        if (notices.length > 0) {
+          document.getElementById('notice-0').classList.add('open');
+        }
+
+      } catch (e) {
+        container.innerHTML = '<p class="notice-empty">お知らせを読み込めませんでした🙏</p>';
+      }
+    }
+
+    function toggleNotice(i) {
+      const card = document.getElementById('notice-' + i);
+      card.classList.toggle('open');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    loadNotices();
   </script>
 
 </body>
