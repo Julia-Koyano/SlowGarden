@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お知らせ｜ポイ活スローガーデン公式サイト</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Helvetica Rounded', 'Hiragino Maru Gothic ProN', sans-serif;
+      background-color: #FFFDF7;
+      color: #5D4037;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #FFD1DC;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      letter-spacing: 2px;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 100;
+      background-color: #FF9AA2;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 154, 162, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .back-btn:hover {
+      background-color: #FF8A95;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    .section-title h2 {
+      color: #FF9AA2;
+      display: inline-block;
+      border-bottom: 3px dashed #FFD1DC;
+      padding-bottom: 5px;
+      font-size: 20px;
+    }
+
+    #notices-list {
+      margin-top: 8px;
+    }
+
+    .notice-card {
+      background: #fff;
+      border: 2px solid #FFE4E1;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(255, 209, 220, 0.25);
+      transition: box-shadow 0.2s;
+    }
+    .notice-card:hover {
+      box-shadow: 0 4px 12px rgba(255, 154, 162, 0.3);
+    }
+
+    .notice-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .notice-app-badge {
+      background-color: #FFE0E6;
+      color: #D87093;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .notice-date {
+      font-size: 11px;
+      color: #AAAAAA;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .notice-title {
+      font-weight: bold;
+      font-size: 13px;
+      color: #5D4037;
+      flex-grow: 1;
+    }
+
+    .notice-chevron {
+      font-size: 12px;
+      color: #CCCCCC;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .notice-card.open .notice-chevron {
+      transform: rotate(180deg);
+    }
+
+    .notice-body {
+      display: none;
+      padding: 0 16px 14px 16px;
+      font-size: 13px;
+      color: #795548;
+      line-height: 1.6;
+      border-top: 1px dashed #FFE4E1;
+      padding-top: 10px;
+    }
+    .notice-card.open .notice-body {
+      display: block;
+    }
+
+    .notice-empty {
+      text-align: center;
+      color: #AAAAAA;
+      padding: 24px 0;
+      font-size: 14px;
+    }
+
+    .notice-loading {
+      text-align: center;
+      color: #FF9AA2;
+      padding: 24px 0;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #A1887F;
+    }
+    footer a {
+      color: #FF9AA2;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="back-btn" href="index.html">←</a>
+
+  <header>
+    <h1>🌷 ポイ活スローガーデン公式 🌷</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>📢 お知らせ</h2>
+    </div>
+
+    <div id="notices-list">
+      <p class="notice-loading">読み込み中…</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <br><br>
+    &copy; 2026 Julia. All rights reserved.
+  </footer>
+
+  <script>
+    async function loadNotices() {
+      const container = document.getElementById('notices-list');
+
+      try {
+        const res = await fetch('notices.json?v=' + Date.now());
+        if (!res.ok) throw new Error('fetch failed');
+        const notices = await res.json();
+
+        if (notices.length === 0) {
+          container.innerHTML = '<p class="notice-empty">お知らせはまだありません🌱</p>';
+          return;
+        }
+
+        container.innerHTML = notices.map((n, i) => `
+          <div class="notice-card" id="notice-${i}">
+            <div class="notice-header" onclick="toggleNotice(${i})">
+              ${n.app ? `<span class="notice-app-badge">🌿 ${n.app}</span>` : ''}
+              <span class="notice-date">${n.date}</span>
+              <span class="notice-title">${escapeHtml(n.title)}</span>
+              <span class="notice-chevron">▼</span>
+            </div>
+            <div class="notice-body">
+              ${escapeHtml(n.body).replace(/\n/g, '<br>')}
+            </div>
+          </div>
+        `).join('');
+
+      } catch (e) {
+        container.innerHTML = '<p class="notice-empty">お知らせを読み込めませんでした🙏</p>';
+      }
+    }
+
+    function toggleNotice(i) {
+      const card = document.getElementById('notice-' + i);
+      card.classList.toggle('open');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    loadNotices();
+  </script>
+
+</body>
+</html>
