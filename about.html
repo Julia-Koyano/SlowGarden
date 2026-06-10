@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINYT GAMES について</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Helvetica Rounded', 'Hiragino Maru Gothic ProN', sans-serif;
+      background-color: #FFFDF7;
+      color: #5D4037;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #FFD1DC;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      letter-spacing: 2px;
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 100;
+      background-color: #FF9AA2;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 154, 162, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    .hamburger:hover {
+      background-color: #FF8A95;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 200px;
+      height: 100vh;
+      background-color: #FFFDF7;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      z-index: 99;
+      transition: right 0.3s ease;
+      padding-top: 80px;
+      border-left: 3px solid #FFE4E1;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 16px 20px;
+      color: #5D4037;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px dashed #FFE4E1;
+    }
+    .mobile-menu a:hover {
+      background-color: #FFF0F5;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    .section-title h2 {
+      color: #FF9AA2;
+      display: inline-block;
+      border-bottom: 3px dashed #FFD1DC;
+      padding-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .info-card {
+      background: #fff;
+      border: 2px solid #FFE4E1;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(255, 209, 220, 0.3);
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .info-table th {
+      text-align: left;
+      color: #D87093;
+      font-weight: bold;
+      padding: 10px 12px 10px 0;
+      width: 40%;
+      vertical-align: top;
+      border-bottom: 1px dashed #FFE4E1;
+    }
+    .info-table td {
+      padding: 10px 0;
+      color: #5D4037;
+      border-bottom: 1px dashed #FFE4E1;
+    }
+    .info-table tr:last-child th,
+    .info-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #A1887F;
+    }
+    footer a {
+      color: #FF9AA2;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="hamburger" id="hamburger-btn">☰</button>
+
+  <nav class="mobile-menu" id="mobile-menu">
+    <a href="index.html">🏠 トップ</a>
+    <a href="index.html#notices">📢 お知らせ</a>
+    <a href="index.html#apps">📱 アプリ一覧</a>
+    <a href="index.html#contact">💌 お問い合わせ</a>
+    <a href="privacy.html">📜 プライバシーポリシー</a>
+  </nav>
+
+  <header>
+    <h1>🌷 MINYT GAMES について 🌷</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>🏢 会社情報</h2>
+    </div>
+
+    <div class="info-card">
+      <table class="info-table">
+        <tr>
+          <th>組織名</th>
+          <td>MINYT GAMES</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>スマートフォン向けゲームアプリの企画・開発・運営</td>
+        </tr>
+        <tr>
+          <th>お問い合わせ</th>
+          <td><a href="mailto:info@minytgames.com">info@minytgames.com</a></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html">トップへ戻る</a>
+    &nbsp;|&nbsp;
+    <a href="privacy.html">プライバシーポリシー</a>
+    <br><br>
+    &copy; 2026 MINYT GAMES. All rights reserved.
+  </footer>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      hamburgerBtn.innerHTML = mobileMenu.classList.contains('open') ? '✕' : '☰';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburgerBtn.innerHTML = '☰';
+      });
+    });
+  </script>
+
+</body>
+</html>
