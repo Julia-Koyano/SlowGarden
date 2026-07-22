@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ &amp; Support | Slow Garden</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Helvetica Rounded', 'Hiragino Maru Gothic ProN', sans-serif;
+      background-color: #FFFDF7;
+      color: #5D4037;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #FFD1DC;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      letter-spacing: 2px;
+    }
+
+    /* ==========================================
+       Hamburger menu
+       ========================================== */
+    .hamburger {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 100;
+      background-color: #FF9AA2;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 154, 162, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    .hamburger:hover {
+      background-color: #FF8A95;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 200px;
+      height: 100vh;
+      background-color: #FFFDF7;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      z-index: 99;
+      transition: right 0.3s ease;
+      padding-top: 80px;
+      border-left: 3px solid #FFE4E1;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 16px 20px;
+      color: #5D4037;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px dashed #FFE4E1;
+    }
+    .mobile-menu a:hover {
+      background-color: #FFF0F5;
+    }
+
+    /* ==========================================
+       Main content
+       ========================================== */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 40px 0 20px 0;
+      scroll-margin-top: 80px;
+    }
+    .section-title h2 {
+      color: #FF9AA2;
+      display: inline-block;
+      border-bottom: 3px dashed #FFD1DC;
+      padding-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #795548;
+      margin-bottom: 8px;
+    }
+
+    /* ==========================================
+       FAQ (accordion)
+       ========================================== */
+    .faq-item {
+      background: #fff;
+      border: 2px solid #FFE4E1;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 8px rgba(255, 209, 220, 0.25);
+      overflow: hidden;
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 46px 16px 18px;
+      position: relative;
+      font-weight: bold;
+      font-size: 15px;
+      color: #D87093;
+      line-height: 1.5;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::before {
+      content: "Q.";
+      color: #FF9AA2;
+      margin-right: 6px;
+    }
+    .faq-item summary::after {
+      content: "＋";
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #FFB6C1;
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after {
+      content: "－";
+    }
+    .faq-answer {
+      padding: 0 18px 18px 18px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #5D4037;
+    }
+    .faq-answer p {
+      margin: 0 0 8px 0;
+    }
+    .faq-answer a {
+      color: #FF9AA2;
+    }
+
+    /* ==========================================
+       Contact
+       ========================================== */
+    .contact-box {
+      background: #FFF0F5;
+      border: 2px dashed #FFB6C1;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .contact-box p {
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .contact-btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #FFB6C1;
+      box-shadow: 0 4px 6px rgba(255, 182, 193, 0.4);
+    }
+    .contact-btn:hover {
+      opacity: 0.8;
+    }
+    .contact-note {
+      font-size: 12px;
+      color: #A1887F;
+      line-height: 1.6;
+      margin: 16px 0 0 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #A1887F;
+    }
+    footer a {
+      color: #FF9AA2;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="hamburger" id="hamburger-btn">☰</button>
+
+  <nav class="mobile-menu" id="mobile-menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="faq_en.html">❓ FAQ</a>
+    <a href="#contact">💌 Contact</a>
+    <a href="privacy_en.html">📜 Privacy Policy</a>
+  </nav>
+
+  <header>
+    <h1>❓ FAQ &amp; Support ❓</h1>
+  </header>
+
+  <div class="container">
+
+    <!-- ==================== FAQ ==================== -->
+    <div class="section-title" id="faq">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <p class="intro">
+      Having trouble? Please check here first.<br>
+      If this doesn't solve it, you can reach us using the contact form at the bottom.
+    </p>
+
+    <!-- ▼▼▼ Feel free to add / edit the Q&As below ▼▼▼ -->
+
+    <details class="faq-item">
+      <summary>I requested a gift card but haven't received it.</summary>
+      <div class="faq-answer">
+        <p>Gift cards are sent within one week of your exchange request.</p>
+        <p>You can check the status of a pending request under "Exchange History" on the Exchange screen. Please note that a request may be declined if fraudulent activity is detected.</p>
+        <p>If more than one week has passed and it still hasn't arrived, please contact us using the form below.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Why can't I exchange for a gift card yet?</summary>
+      <div class="faq-answer">
+        <p>To help prevent fraud, gift-card exchanges unlock 3 days after you install the app.</p>
+        <p>After that, you can request one exchange per week.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>I'm switching phones. Can I transfer my data?</summary>
+      <div class="faq-answer">
+        <p>Yes. Tap the gear icon (⚙️) at the top right of the Exchange screen to transfer your data.</p>
+        <p>Please complete the transfer <strong>before</strong> switching devices.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Reward video ads won't show.</summary>
+      <div class="faq-answer">
+        <p>Depending on your connection or ad availability, ads may temporarily fail to load. Please wait a little while and try again somewhere with a good connection.</p>
+      </div>
+    </details>
+
+    <!-- ▲▲▲ End of Q&As ▲▲▲ -->
+
+    <!-- ==================== Contact ==================== -->
+    <div class="section-title" id="contact">
+      <h2>💌 Contact Us</h2>
+    </div>
+
+    <div class="contact-box">
+      <p>
+        If the answers above didn't help, or you have feedback, bug reports,
+        or a privacy request (data access / correction / deletion),
+        please use the form below.
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSclPJZmFeL1IBk8nyZgvcqNv2DkGokH393TfhZwmXAeCs3Alw/viewform?usp=publish-editor" class="contact-btn">Go to contact form</a>
+      <p class="contact-note">
+        ※ We do our best to respond to every inquiry, but depending on the content we may not always be able to reply. Thank you for your understanding.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="index.html">Back to home</a>
+    &nbsp;|&nbsp;
+    <a href="privacy_en.html">Privacy Policy</a>
+    &nbsp;|&nbsp;
+    <a href="faq.html">日本語版はこちら</a>
+    <br><br>
+    &copy; 2026 minyt Games. All rights reserved.
+  </footer>
+
+  <script>
+    /* ==========================================
+       Hamburger menu
+       ========================================== */
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      hamburgerBtn.innerHTML = mobileMenu.classList.contains('open') ? '✕' : '☰';
+    });
+  </script>
+
+</body>
+</html>
