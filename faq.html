@@ -295,7 +295,7 @@
         上記で解決しない場合や、ご意見・ご要望などは<br>こちらのフォームからお願いいたします！<br>
         <span lang="en">For bug reports, feedback, or privacy requests (data access / correction / deletion), please use the form below.</span>
       </p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSclPJZmFeL1IBk8nyZgvcqNv2DkGokH393TfhZwmXAeCs3Alw/viewform?usp=publish-editor" class="contact-btn">お問い合わせフォームへ / Go to contact form</a>
+      <a id="contact-form-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSclPJZmFeL1IBk8nyZgvcqNv2DkGokH393TfhZwmXAeCs3Alw/viewform?usp=publish-editor" class="contact-btn">お問い合わせフォームへ / Go to contact form</a>
       <p class="contact-note">
         ※ いただいたお問い合わせには順次対応いたしますが、内容によってはお返事いたしかねる場合がございます。あらかじめご了承ください。
       </p>
@@ -324,6 +324,38 @@
       mobileMenu.classList.toggle('open');
       hamburgerBtn.innerHTML = mobileMenu.classList.contains('open') ? '✕' : '☰';
     });
+
+    /* ==========================================
+       アプリからの診断情報を、お問い合わせフォームに自動入力する
+       -----------------------------------------
+       アプリの「お問い合わせ」ボタンは faq.html?d=... の形で
+       診断情報（uid・端末・AppCheck状態・残高など）を渡してくる。
+       それを Google フォームの「診断情報」欄に prefill して開く。
+       ユーザーは何も入力しなくてよい。
+       ========================================== */
+    (function () {
+      // ▼▼▼ ここだけ設定してください ▼▼▼
+      // Googleフォームに「診断情報（自動入力・変更しないでください）」という
+      // 記述式の質問を1つ追加し、
+      //   フォーム編集画面 → 右上「⋮」→「事前入力したURLを取得」
+      //   → その欄に適当な文字を入れて「リンクを取得」
+      // で出てくるURLの entry.XXXXXXXXX を、下にそのまま貼り替える。
+      const DIAG_ENTRY_ID = 'entry.913995830';
+      // ▲▲▲ 設定ここまで ▲▲▲
+
+      const FORM_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSclPJZmFeL1IBk8nyZgvcqNv2DkGokH393TfhZwmXAeCs3Alw/viewform';
+
+      const diag = new URLSearchParams(window.location.search).get('d');
+      const btn = document.getElementById('contact-form-btn');
+
+      // entry ID が未設定（プレースホルダのまま）なら何もしない＝通常のフォームが開く。
+      if (btn && diag && DIAG_ENTRY_ID !== 'entry.XXXXXXXXX') {
+        btn.setAttribute(
+          'href',
+          FORM_BASE + '?usp=pp_url&' + DIAG_ENTRY_ID + '=' + encodeURIComponent(diag)
+        );
+      }
+    })();
   </script>
 
 </body>
